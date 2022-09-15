@@ -6,7 +6,7 @@ import gym
 from tqdm import tqdm
 from torch.utils.tensorboard import SummaryWriter
 import ray
-import toy_models
+#import toy_models
 
 class Writer:
     def __init__(self, run_name):

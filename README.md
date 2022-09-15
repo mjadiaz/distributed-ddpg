@@ -54,11 +54,17 @@ APEX_DDPG_DEFAULT_CONFIG = {
         }
 
 ```
+# Conda environment 
+To use the package create a new conda environment with:
 
-# Running on Mac M1
+`conda env create --file environment.yml`
+
+## Running on Mac M1
 
 For running on Mac M1 with gpu acceleration update the pytorch version to:
 
 `conda install pytorch -c pytorch-nightly`
 
-and in the agent config turn `'running_on': 'M1'`.
+and in the agent config turn `'running_on': 'M1'`. Also force reinstall with conda the following package,
+
+`conda install grpcio --force`
