@@ -26,7 +26,7 @@ APEX_DDPG_DEFAULT_CONFIG = {
             'num_train_workers': 3,
             'num_eval_workers': 2,
             'max_exploration_eps': 1.0,
-            'split_sigma': False,
+            'split_sigma': True,
             'learning_starts': 100,
             'max_samples': 5e6,
             'timesteps_per_iteration': 1000,
@@ -46,7 +46,7 @@ APEX_DDPG_DEFAULT_CONFIG = {
             'beta_rate': 0.9995
             },
         'noise': {
-            'name': 'OrnsteinUhlenbeck',
+            'name': 'Gaussian',
             'theta': 0.2,
             'sigma': 0.15, #OU 
             'dt': 1e-3,
@@ -58,6 +58,7 @@ APEX_DDPG_DEFAULT_CONFIG = {
             'initial_decreasing_step': 8000,
             'final_decreasing_step': 12000,
             },
+        'running_on': 'M1'
         }
 
 APEX_DDPG_DEFAULT_CONFIG = OmegaConf.create(APEX_DDPG_DEFAULT_CONFIG)
@@ -114,10 +115,11 @@ def train(
 
     for i in range(num_train_workers):
         # Distribute epsilon to have a diverse exploration
-        # Here we need to define properly this! since 
-        # we are not using it right now.
-        eps = agent_config.agent.max_exploration_eps\
-                * i/num_train_workers
+        if agent_config.agent.split_sigma:
+            eps = agent_config.noise.sigma\
+                    * i/num_train_workers
+        else:
+            eps = agent_config.noise.sigma
         # Initialize the actors
         actor = Worker.remote(
                 'train-actor:'+str(i),

@@ -40,10 +40,12 @@ def minmax(x, domain, codomain, reverse=False):
 
 
 def generate_action_space(action_dim, bottom, top, samples=50):
-    space = [np.linspace(bottom,top, samples) for _ in range(action_dim)]
-    mesh_space = np.meshgrid(*space)
-    mesh_space_flat = [s.flatten() for s in mesh_space]
-    action_space = np.vstack(mesh_space_flat).T
+    #space = [np.linspace(bottom,top, samples) for _ in range(action_dim)]
+    #mesh_space = np.meshgrid(*space)
+    #mesh_space_flat = [s.flatten() for s in mesh_space]
+    #action_space = np.vstack(mesh_space_flat).T
+    action_space = np.random.uniform(-1, 1 ,size=(samples**action_dim, 2))
+
     return action_space
 
 def generate_state_action_batch(state, action_dim, bottom=-1., top=1., samples=50):

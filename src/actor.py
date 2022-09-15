@@ -50,7 +50,7 @@ class Worker:
         self.gamma = self.config.agent.gamma
         self.eps = eps
         if config.agent.split_sigma:
-            self.config.noise.sigma = config.noise.sigma*self.eps
+            self.config.noise.sigma = self.eps
         self.eval = eval
 
         # Initialize networks

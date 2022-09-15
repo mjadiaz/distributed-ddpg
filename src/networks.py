@@ -35,6 +35,8 @@ class Actor(nn.Module):
         super().__init__()
         self.config = config
         self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
+        if self.config.running_on == 'M1':
+            self.device = 'mps' if torch.backends.mps.is_available() else 'cpu'
         if worker: 
             self.device = 'cpu'
 
@@ -87,6 +89,8 @@ class Critic(nn.Module):
         super().__init__()
         self.config = config
         self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
+        if self.config.running_on == 'M1':
+            self.device = 'mps' if torch.backends.mps.is_available() else 'cpu'
         if worker:
             self.device = 'cpu'
 

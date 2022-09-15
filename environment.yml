@@ -1,0 +1,14 @@
+name: distributed-ddpg
+
+dependencies:
+  - conda-forge::matplotlib
+  - conda-forge::numpy
+  - conda-forge::gym-all
+  - pytorch::pytorch
+  - conda-forge::omegaconf
+  - conda-forge::tqdm
+  - anaconda::jupyter
+  - conda-forge::jupyterthemes
+  - anaconda::grpcio
+  - conda-forge::tensorboard
+  - conda-forge::imageio
