@@ -1,21 +1,21 @@
 # distributed-ddpg
 # Contents
-- [Training the Distributed](#Training the Distributed-DDPG)
-	- [Config file](##Config file)
--  [Conda environment](#Conda environment)
-	- [Working on toy-models branch](##Working on toy-models branch)
-	- [Running on Mac M1](##Running on Mac M1)
+1. [Training the Distributed](#training)
+	- [Config file](#config)
+2. [Conda environment](#environment)
+	- [Working on toy-models branch](#toymodels)
+	- [Running on Mac M1](#macm1)
 
 --- 
 
-# Training the Distributed-DDPG
+# Training the Distributed-DDPG <a name="training"></a>
 
 To run the algorithm, configure the agent and environment config in `train.py` script and run it with `python train.py`.
 
 Remember to edit the `RUN_NAME` variable, which is the name of the folder to save the trained agent.
 
 
-## Config file
+## Config file  <a name="config"></a>
 
 ```python
 APEX_DDPG_DEFAULT_CONFIG = {
@@ -65,19 +65,19 @@ APEX_DDPG_DEFAULT_CONFIG = {
         }
 
 ```
-# Conda environment 
+# Conda environment <a name="environment"></a>
 To use the package create a new conda environment with:
 
 `conda env create --file environment.yml`
 
-## Working on toy-models branch
+## Working on toy-models branch <a name="toymodels"></a>
 - Clone following repo `git@github.com:mjadiaz/toy-models.git` and install the package on the toy-models folder with `pip install --editable .`. So that you can modify the environment.
 
 - The `analizer.py` script displays a visualization for the Q-network (Critic). To use the `analizer.py` install [streamlit](https://streamlit.io/) with `pip install streamlit` and run the analizer script with:
 
 `streamlit run analizer.py`
 
-## Running on Mac M1
+## Running on Mac M1 <a name="macm1"></a>
 
 For running on Mac M1 with gpu acceleration update the pytorch version to:
 
