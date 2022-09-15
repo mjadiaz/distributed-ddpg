@@ -71,7 +71,7 @@ To use the package create a new conda environment with:
 `conda env create --file environment.yml`
 
 ## Working on toy-models branch <a name="toymodels"></a>
-- Clone following repo `git@github.com:mjadiaz/toy-models.git` and install the package on the toy-models folder with `pip install --editable .`. So that you can modify the environment.
+- Clone following repo [`git@github.com:mjadiaz/toy-models.git`](https://github.com/mjadiaz/toy-models) and install the package on the toy-models folder with `pip install --editable .`. So that you can modify the environment.
 
 - The `analizer.py` script displays a visualization for the Q-network (Critic). To use the `analizer.py` install [streamlit](https://streamlit.io/) with `pip install streamlit` and run the analizer script with:
 
