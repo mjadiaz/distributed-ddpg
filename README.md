@@ -6,7 +6,7 @@ Remember to edit the `RUN_NAME` variable, which is the name of the folder to sav
 
 ## Config file
 
-```
+```python
 APEX_DDPG_DEFAULT_CONFIG = {
         'agent': {
             'actor_lr': 0.001,
