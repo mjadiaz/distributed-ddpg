@@ -4,6 +4,7 @@ To run the algorithm, configure the agent and environment config in `train.py` s
 
 Remember to edit the `RUN_NAME` variable, which is the name of the folder to save the trained agent.
 
+
 ## Config file
 
 ```python
@@ -58,6 +59,13 @@ APEX_DDPG_DEFAULT_CONFIG = {
 To use the package create a new conda environment with:
 
 `conda env create --file environment.yml`
+
+## Working on toy-models branch
+Clone following repo `git@github.com:mjadiaz/toy-models.git` and install the package on the toy-models folder with `pip install --editable .`.
+
+Also to use the `analizer.py` install [streamlit](https://streamlit.io/) with `pip install streamlit` and run the analizer script with:
+
+`streamlit run analizer.py`
 
 ## Running on Mac M1
 
