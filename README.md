@@ -1,4 +1,14 @@
 # distributed-ddpg
+# Contents
+- [Training the Distributed](#Training the Distributed-DDPG)
+	- [Config file](##Config file)
+-  [Conda environment](#Conda environment)
+	- [Working on toy-models branch](##Working on toy-models branch)
+	- [Running on Mac M1](##Running on Mac M1)
+
+--- 
+
+# Training the Distributed-DDPG
 
 To run the algorithm, configure the agent and environment config in `train.py` script and run it with `python train.py`.
 
@@ -61,9 +71,9 @@ To use the package create a new conda environment with:
 `conda env create --file environment.yml`
 
 ## Working on toy-models branch
-Clone following repo `git@github.com:mjadiaz/toy-models.git` and install the package on the toy-models folder with `pip install --editable .`.
+- Clone following repo `git@github.com:mjadiaz/toy-models.git` and install the package on the toy-models folder with `pip install --editable .`. So that you can modify the environment.
 
-Also to use the `analizer.py` install [streamlit](https://streamlit.io/) with `pip install streamlit` and run the analizer script with:
+- The `analizer.py` script displays a visualization for the Q-network (Critic). To use the `analizer.py` install [streamlit](https://streamlit.io/) with `pip install streamlit` and run the analizer script with:
 
 `streamlit run analizer.py`
 
