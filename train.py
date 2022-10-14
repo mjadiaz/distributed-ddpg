@@ -51,7 +51,7 @@ agent_config.agent.final_decreasing_step = 400000
 agent_config.agent.split_sigma = True
 agent_config.env.name = 'ToyFunction2d-v1'
 
-RUN_NAME = 'toy_models/test_density_reward_4'
+run_name = 'toy_models/test_density_reward_5'
 
 if __name__ == '__main__':
 
@@ -60,5 +60,5 @@ if __name__ == '__main__':
             env_config=env_config,
             local_mode=False,
             num_cpus=4,
-            run_name = RUN_NAME 
+            run_name = run_name 
             )

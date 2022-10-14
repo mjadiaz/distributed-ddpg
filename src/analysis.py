@@ -15,6 +15,7 @@ from src.utils import Writer
 from src.networks import Actor, Critic
 from src.train import add_env_data
 
+
 def minmax(x, domain, codomain, reverse=False):
     '''
     Normalize an x value given a minimum and maximum mapping.
@@ -55,6 +56,68 @@ def generate_state_action_batch(state, action_dim, bottom=-1., top=1., samples=5
     return states, actions
     
 
+
+class PolicyNetwork:
+    def __init__(
+            self,
+            agent_config: DictConfig,
+            env_config: DictConfig,
+            run_name: str,
+            checkpoint_name: str,
+            samples = 50
+            ):
+
+        agent_config = agent_config
+        agent_config.agent.save_path = 'runs/'+run_name
+        add_env_data(
+                agent_config,
+                agent_config.env.name,
+                env_config=env_config
+                )
+        self.agent_config = agent_config
+        self.env_config = env_config
+        self.run_name = run_name
+        self.checkpoint_name = checkpoint_name
+        self.samples = samples
+
+        self.actor = Actor(agent_config)
+        checkpoint_name = 'checkpoint' if checkpoint_name is None else checkpoint_name
+        complete_path = os.path.join(agent_config.agent.save_path, checkpoint_name)
+
+        self.actor.load_model(agent_config.agent.save_path, checkpoint_name)
+        if env_config:
+            self.env = gym.make(agent_config.env.name, env_config=env_config)
+        else:
+            self.env = gym.make(agent_config.env.name)
+    def get_action(self, state):
+        state = torch.tensor(state).float().to(self.actor.device)
+        # Get predictions
+        action = self.actor(state)
+        action = action.detach().cpu().numpy()
+        return action
+
+    def get_action_space(self, samples=100, action_dim=2,state_space=None):
+        if state_space is None:
+            state_space = np.random.uniform(-1, 1 ,size=(samples**action_dim, 2))
+        self.current_states = state_space
+        states = torch.tensor(state_space).float().to(self.actor.device)
+        # get predictions
+        actions = self.actor(states)
+        actions = actions.detach().cpu().numpy()
+        self.current_actions = actions
+        return state_space, actions
+
+    def generate_trajectories(self, state_space=None, steps=10):
+        if not state_space:
+            state_space = np.random.uniform(-1, 1 ,size=(samples**action_dim, 2))
+        states = torch.tensor(state_space).float().to(self.actor.device)
+        # get predictions
+        actions_trajectory = [state_space]
+        for n in range(steps):
+            actions = self.actor(states)
+            actions = actions.detach().cpu().numpy()
+            actions_trajectory.append(actions)
+        return actions_trajectory
 
 class QNetwork:
     def __init__(
