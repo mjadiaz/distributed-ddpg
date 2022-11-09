@@ -97,6 +97,7 @@ p_network = PolicyNetwork(
         checkpoint_name = None,
         samples = 50
         )
+print(q_network)
 with tab1:
     q_values = q_network.random_state_q_values()
     state = q_network.current_states[0] 
@@ -272,7 +273,7 @@ def qa_plot(state, actions, q_values, action_index, soft_max_q, policy_next_stat
     return fig
 with tab4:
     # total_samples = n_samples ** 2
-    n_samples, n_best = 60, 100
+    n_samples, n_best = 30, 100
     state, actions, q_values, action_index, soft_max_q = QA_Sampling(n_samples=n_samples, n_best=n_best)
     images = [] 
     for n in range(30):
@@ -281,7 +282,8 @@ with tab4:
         q_random_choice = np.random.choice(action_index, replace=False, p=soft_max_q.flatten())
         q_next_state_choice = actions[int(q_random_choice)]
 
-        policy_corrected = p_network.get_action(q_next_state_choice)
+        #policy_corrected = p_network.get_action(q_next_state_choice)
+        policy_corrected = q_next_state_choice
 
     
         fig = qa_plot(state, actions, q_values, action_index, soft_max_q, policy_corrected, q_next_state_choice)

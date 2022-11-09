@@ -3,15 +3,7 @@ import numpy as np
 import os
 import torch
 import gym
-import ray
 
-from src.actor import Worker
-from src.memory import PrioritizedReplayBuffer
-from src.memory import ExperienceReplayMemory
-from src.learner import Learner
-from src.parameter_server import ParameterServer
-from src.parameter_server import NewParameterServer
-from src.utils import Writer
 from src.networks import Actor, Critic
 from src.train import add_env_data
 

@@ -52,6 +52,7 @@ class Worker:
         self.eps = eps
         if config.agent.split_sigma:
             self.config.noise.sigma = self.eps
+            print('Worker {} exploration sigma: {}'.format(self.actor_id, self.eps))
         self.eval = eval
 
         # Initialize networks
